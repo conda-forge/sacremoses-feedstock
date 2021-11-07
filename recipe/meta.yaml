@@ -19,11 +19,11 @@ build:
 requirements:
   host:
     - pip
-    - python
+    - python >=3.6
   run:
     - click
     - joblib
-    - python
+    - python >=3.6
     - regex
     - six
     - tqdm
