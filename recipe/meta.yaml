@@ -6,12 +6,12 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
   sha256: 43715868766c643b35de4b8046cce236bfe59a7fa88b25eaf6ddf02bacf53a7a
 
 build:
   noarch: python
-  number: 0
+  number: 1
   entry_points:
     - sacremoses=sacremoses.cli:cli
   script: '{{ PYTHON }} -m pip install . --no-deps --ignore-installed -vv '
@@ -19,16 +19,18 @@ build:
 requirements:
   host:
     - pip
-    - python >=3.6
+    - python {{ python_min }}
   run:
     - click
     - joblib
-    - python >=3.6
+    - python >={{ python_min }}
     - regex
     - six
     - tqdm
 
 test:
+  requires:
+    - python {{ python_min }}
   imports:
     - sacremoses
   commands:
