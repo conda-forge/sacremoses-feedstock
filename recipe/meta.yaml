@@ -1,13 +1,13 @@
 {% set name = "sacremoses" %}
-{% set version = "0.0.53" %}
+{% set version = "0.2.0" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 43715868766c643b35de4b8046cce236bfe59a7fa88b25eaf6ddf02bacf53a7a
+  url: https://files.pythonhosted.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: 5aec4792efc2726710243d3566b381990e6b678cb1fd7b9d2dae216b4b8f1b1e
 
 build:
   noarch: python
