@@ -1,0 +1,62 @@
+schema_version: 1
+
+context:
+  version: "0.2.0"
+
+package:
+  name: sacremoses
+  version: ${{ version }}
+
+source:
+  url: https://github.com/alvations/sacremoses/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: 34dbe6f3cd5107813cfeabf9e88cf5dbd8ecc639d2687d154d280ddb3a796bf6
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+  python:
+    entry_points:
+      - sacremoses=sacremoses.cli:cli
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools
+  run:
+    - click
+    - joblib
+    - python >=${{ python_min }}
+    - regex
+    - six
+    - tqdm
+
+tests:
+  - files:
+      source:
+        - sacremoses/test
+    requirements:
+      run:
+        - pytest
+    script:
+      - pytest -v sacremoses/test
+      - sacremoses --help
+  - python:
+      imports:
+        - sacremoses
+      pip_check: true
+      python_version:
+        - ${{ python_min }}.*
+        - '*'
+
+about:
+  license: MIT
+  license_file: LICENSE
+  summary: SacreMoses
+  homepage: https://github.com/alvations/sacremoses
+
+extra:
+  recipe-maintainers:
+    - roccqqck
+    - jsmolic
